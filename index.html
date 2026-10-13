@@ -2,11 +2,59 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>zx-jx.top</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+        }
+        body {
+            background: #1a1a1a;
+            color: #eee;
+            padding: 32px;
+            max-width: 920px;
+            margin: 0 auto;
+        }
+        h1 {
+            margin-bottom: 28px;
+            font-size: 24px;
+        }
+        .file-list {
+            display: grid;
+            gap: 14px;
+        }
+        .file-item {
+            background: #272727;
+            padding: 16px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap:14px;
+        }
+        .pdf-icon{
+            font-size:22px;
+        }
+        .file-item a{
+            color:#60a5fa;
+            text-decoration:none;
+            font-size:17px;
+        }
+        .file-item a:hover{
+            text-decoration:underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>✅ Cloudflare Pages + GitHub自动部署</h1>
-    <p>域名：zx-jx.top</p>
-    <p>修改GitHub仓库代码，网站会自动更新</p>
+    <h1>📚 PDF文档列表</h1>
+    <div class="file-list">
+        <div class="file-item">
+            <span class="pdf-icon">📄</span>
+            <a target="_blank" href="https://pdf.zx-jx.top/book/yanyu1.pdf">yanyu1.pdf</a>
+        </div>
+        <!--后续新增PDF就复制上面这一段，修改文件名和链接即可-->
+    </div>
 </body>
 </html>
