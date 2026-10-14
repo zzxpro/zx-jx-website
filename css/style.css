@@ -1,1 +1,33 @@
+body{
+    background:#111;
+    color:#eee;
+    font-family:system-ui, -apple-system, sans-serif;
+    padding:20px;
+}
+.tree-item{
+    margin:6px 0 6px 16px;
+}
+.tree-toggle{
+    cursor:pointer;
+    font-weight:bold;
+    font-size:16px;
+}
+.tree-children{
+    margin-left:20px;
+    display:block;
+}
+.file-item{
+    margin:4px 0 4px 12px;
+}
+a{
+    color:#6cf;
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:underline;
+}
+.back-link{
+    margin-top:24px;
+    display:inline-block;
+}
 
