@@ -1,32 +1,57 @@
-body{
-    background:#111;
-    color:#eee;
-    font-family:system-ui, -apple-system, sans-serif;
-    padding:20px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.tree-item{
-    margin:6px 0 6px 16px;
+body {
+  background-color: #121212;
+  color: #eeeeee;
+  font-family: "Microsoft YaHei", system-ui, sans-serif;
+  padding: 32px;
+  line-height: 1.7;
 }
-.tree-toggle{
-    cursor:pointer;
-    font-weight:bold;
-    font-size:16px;
+h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #ffffff;
+  font-weight: 600;
 }
-.tree-children{
-    margin-left:20px;
-    display:block;
+.tree-item {
+  margin-bottom: 16px;
 }
-.file-item{
-    margin:4px 0 4px 12px;
+.tree-toggle {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
-a{
-    color:#6cf;
-    text-decoration:none;
+.tree-toggle:hover {
+  background-color: #272727;
 }
-a:hover{
-    text-decoration:underline;
+.tree-children {
+  padding-left: 28px;
+  margin-top: 6px;
 }
-.back-link{
-    margin-top:24px;
-    display:inline-block;
+.file-item {
+  margin: 6px 0;
+  padding: 6px 8px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+.file-item:hover {
+  background-color: #222831;
+}
+a {
+  color: #74b9ff;
+  text-decoration: none;
+}
+a:hover {
+  color: #00ccff;
+  text-decoration: underline;
+}
+.back-link {
+  display: inline-block;
+  margin-top:12px;
+  font-size:16px;
 }
