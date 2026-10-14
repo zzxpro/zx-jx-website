@@ -3,60 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>在线笔记 | zx-jx.top</title>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<title>在线笔记</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#1a1a1a;color:#eee;padding:20px;font-family:system-ui;min-height:100vh;}
-h1{text-align:center;margin-bottom:20px;font-size:24px}
-.top-bar{text-align:center;margin-bottom:16px}
-.top-bar a{color:#60a5fa;text-decoration:none;margin-right:20px}
-.top-bar button{padding:8px 14px;margin:0 4px;border:none;border-radius:6px;cursor:pointer}
-.container{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-height:70vh}
-#md-input{
-    background:#222;color:#fff;padding:14px;border-radius:8px;border:1px solid #444;
-    resize:none;font-size:15px;
-    pointer-events:auto;
-    user-select:text;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0
 }
-#preview{background:#272727;padding:16px;border-radius:8px;overflow:auto}
-@media(max-width:720px){
-    .container{grid-template-columns:1fr;grid-template-rows:40vh 40vh}
+body{
+    background:#1a1a1a;
+    color:#eee;
+    padding:20px;
+    font-family:system-ui;
+    min-height:100vh;
+}
+#password-box{
+    max-width:420px;
+    margin:80px auto;
+    text-align:center;
+}
+#password-box h2{
+    margin-bottom:12px;
+}
+#password-box input{
+    padding:10px;
+    width:260px;
+    border-radius:6px;
+    border:none;
+    margin-right:8px;
+    font-size:16px;
+}
+#password-box button{
+    padding:10px 16px;
+    border-radius:6px;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+    background:#4285f4;
+    color:white;
+}
+#password-box button:hover{
+    background:#336fcf;
 }
 </style>
 </head>
 <body>
-    <h1>📝 在线笔记</h1>
-    <div class="top-bar">
-        <a href="/">← 返回文档首页</a>
-        <button onclick="copySource()">复制MD源码</button>
-        <button onclick="clearAll()">清空笔记</button>
-    </div>
-    <div class="container">
-        <textarea id="md-input" oninput="render()" placeholder="在这里写笔记，支持Markdown语法"></textarea>
-        <div id="preview"></div>
+    <div id="password-box">
+        <h2>🔐 请输入访问密码</h2>
+        <br>
+        <input id="pwdInput" type="password" placeholder="输入密码">
+        <button onclick="checkPassword()">确认</button>
     </div>
 
 <script>
-const storageKey = "zxjx-note";
-const input = document.getElementById("md-input");
-const preview = document.getElementById("preview");
+// ==========【在这里修改参数】==========
+const PASSWORD = "552661";  // 网页页面密码（你自定义）
+// 替换成你的金山文档链接，?password=后面写你在金山文档设置的文档密码
+const DOC_URL = "https://www.kdocs.cn/l/coNULTGJZD5F";
+// =====================================
 
-// 读取本地缓存
-input.value = localStorage.getItem(storageKey) || "# 在线笔记\n\n可以在这里记录备考笔记\n\n- 知识点1\n- 知识点2\n";
-render();
-
-function render(){
-    preview.innerHTML = marked.parse(input.value);
-    localStorage.setItem(storageKey, input.value);
-}
-
-function copySource(){
-    navigator.clipboard.writeText(input.value).then(()=>alert("MD源码复制成功！"))
-}
-function clearAll(){
-    if(confirm("确定清空全部笔记？")){
-        input.value="";render();
+function checkPassword(){
+    const pwd = document.getElementById("pwdInput").value.trim();
+    if(pwd === PASSWORD){
+        // _blank：在新标签页打开金山文档
+        window.open(DOC_URL,"_blank");
+    }else{
+        alert("密码错误！");
     }
 }
 </script>
