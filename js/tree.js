@@ -14,14 +14,13 @@ function toggle(el) {
   const child = el.nextElementSibling;
   if (!child) return;
 
-  // 用元素文本作为唯一key
   const key = el.textContent.trim();
   child.style.display = child.style.display === 'none' ? 'block' : 'none';
   treeState[key] = child.style.display;
   saveTreeState(treeState);
 }
 
-// 页面加载完成，恢复所有目录的展开/收起状态
+// 页面加载完成自动恢复所有目录折叠状态
 window.addEventListener('DOMContentLoaded', () => {
   const toggles = document.querySelectorAll('.tree-toggle');
   toggles.forEach(el => {
