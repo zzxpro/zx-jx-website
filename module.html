@@ -15,7 +15,6 @@
 </div>
 <br>
 <a class="back-link" href="gongkao.html">← 返回公考目录</a>
-
 <script src="js/tree.js"></script>
 <script src="js/filelist.js"></script>
 <script>
@@ -24,11 +23,23 @@ const params = new URLSearchParams(location.search);
 const moduleName = params.get("m");
 if(!moduleName) location.href="gongkao.html";
 
-// 页面标题替换
-document.getElementById("page-title").innerText = moduleName;
-document.getElementById("folder-name").innerText = moduleName;
-
-renderPdfList(moduleName, "#module-container");
+// 加载中文模块映射
+fetch("module-map.json")
+.then(res => res.json())
+.then(map => {
+  const displayName = map[moduleName] ?? moduleName;
+  // 页面标题替换
+  document.getElementById("page-title").innerText = displayName;
+  document.getElementById("folder-name").innerText = displayName;
+  document.title = displayName + " | PDF文档库";
+  renderPdfList(moduleName, "#module-container");
+})
+.catch(() => {
+  // 映射文件加载失败降级，使用原始英文名
+  document.getElementById("page-title").innerText = moduleName;
+  document.getElementById("folder-name").innerText = moduleName;
+  renderPdfList(moduleName, "#module-container");
+});
 </script>
 </body>
 </html>
