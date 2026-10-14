@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>模块文档</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h2 id="page-title">模块</h2>
+<div class="tree-item">
+  <div class="tree-toggle" onclick="toggle(this)">📂 <span id="folder-name"></span></div>
+  <div class="tree-children" id="module-container">
+    <!-- JS自动填充PDF -->
+  </div>
+</div>
+<br>
+<a class="back-link" href="gongkao.html">← 返回公考目录</a>
+
+<script src="js/tree.js"></script>
+<script src="js/filelist.js"></script>
+<script>
+// 读取url参数 m=模块名
+const params = new URLSearchParams(location.search);
+const moduleName = params.get("m");
+if(!moduleName) location.href="gongkao.html";
+
+// 页面标题替换
+document.getElementById("page-title").innerText = moduleName;
+document.getElementById("folder-name").innerText = moduleName;
+
+renderPdfList(moduleName, "#module-container");
+</script>
+</body>
+</html>
