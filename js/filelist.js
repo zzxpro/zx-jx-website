@@ -2,7 +2,6 @@
 // 全局变量保存文件清单
 let fileListData = null;
 
-// 加载json
 async function loadFileList() {
   try {
     const res = await fetch("filelist.json");
@@ -12,7 +11,6 @@ async function loadFileList() {
   }
 }
 
-// 渲染指定模块PDF列表
 async function renderPdfList(moduleName, containerSelector) {
   await loadFileList();
   const container = document.querySelector(containerSelector);
@@ -30,3 +28,4 @@ async function renderPdfList(moduleName, containerSelector) {
   });
   container.innerHTML = html;
 }
+
