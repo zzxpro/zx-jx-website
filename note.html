@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线笔记 | zx-jx.top</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a1a1a;color:#eee;padding:20px;font-family:system-ui}
+h1{text-align:center;margin-bottom:20px;font-size:24px}
+.top-bar{text-align:center;margin-bottom:16px}
+.top-bar a{color:#60a5fa;text-decoration:none;margin-right:20px}
+.top-bar button{padding:8px 14px;margin:0 4px;border:none;border-radius:6px;cursor:pointer}
+.container{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:calc(100vh - 140px)}
+#md-input{background:#222;color:#fff;padding:14px;border-radius:8px;border:1px solid #444;resize:none;font-size:15px}
+#preview{background:#272727;padding:16px;border-radius:8px;overflow:auto}
+@media(max-width:720px){
+    .container{grid-template-columns:1fr;grid-template-rows:40vh 40vh}
+}
+</style>
+</head>
+<body>
+    <h1>📝 在线笔记</h1>
+    <div class="top-bar">
+        <a href="/">← 返回文档首页</a>
+        <button onclick="copySource()">复制MD源码</button>
+        <button onclick="clearAll()">清空笔记</button>
+    </div>
+    <div class="container">
+        <textarea id="md-input" oninput="render()" placeholder="在这里写笔记，支持Markdown语法"></textarea>
+        <div id="preview"></div>
+    </div>
+
+<script>
+const storageKey = "zxjx-note";
+const input = document.getElementById("md-input");
+const preview = document.getElementById("preview");
+
+// 读取本地缓存
+input.value = localStorage.getItem(storageKey) || "# 在线笔记\n\n可以在这里记录备考笔记\n\n- 知识点1\n- 知识点2\n";
+render();
+
+function render(){
+    preview.innerHTML = marked.parse(input.value);
+    localStorage.setItem(storageKey, input.value);
+}
+
+function copySource(){
+    navigator.clipboard.writeText(input.value).then(()=>alert("MD源码复制成功！"))
+}
+function clearAll(){
+    if(confirm("确定清空全部笔记？")){
+        input.value="";render();
+    }
+}
+</script>
+</body>
+</html>
